@@ -4,7 +4,6 @@ import '../model/selected_list_item.dart';
 import 'app_text_field.dart';
 
 class DropDown {
-
   /// This will give the list of data.
   final List<SelectedListItem> data;
 
@@ -31,6 +30,10 @@ class DropDown {
   /// by default it is [True] so widget will be visible.
   final bool isSearchVisible;
 
+  /// [searchText] change the default 'Search' to text you want.
+  /// by default it is ["Search"]
+  final String? searchText;
+
   /// This will set the background color to the dropdown.
   final Color dropDownBackgroundColor;
 
@@ -45,6 +48,7 @@ class DropDown {
     this.searchWidget,
     this.isSearchVisible = true,
     this.dropDownBackgroundColor = Colors.transparent,
+    this.searchText,
   });
 }
 
@@ -104,12 +108,14 @@ class _MainBodyState extends State<MainBody> {
         return Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
+              padding:
+                  const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   /// Bottom sheet title text
-                  Expanded(child: widget.dropDown.bottomSheetTitle ?? Container()),
+                  Expanded(
+                      child: widget.dropDown.bottomSheetTitle ?? Container()),
 
                   /// Done button
                   Visibility(
@@ -119,18 +125,22 @@ class _MainBodyState extends State<MainBody> {
                       child: Material(
                         child: ElevatedButton(
                           onPressed: () {
-                            List<SelectedListItem> selectedList =
-                                widget.dropDown.data.where((element) => element.isSelected == true).toList();
+                            List<SelectedListItem> selectedList = widget
+                                .dropDown.data
+                                .where((element) => element.isSelected == true)
+                                .toList();
                             List<dynamic> selectedNameList = [];
 
                             for (var element in selectedList) {
                               selectedNameList.add(element);
                             }
 
-                            widget.dropDown.selectedItems?.call(selectedNameList);
+                            widget.dropDown.selectedItems
+                                ?.call(selectedNameList);
                             _onUnFocusKeyboardAndPop();
                           },
-                          child: widget.dropDown.submitButtonChild ?? const Text('Done'),
+                          child: widget.dropDown.submitButtonChild ??
+                              const Text('Done'),
                         ),
                       ),
                     ),
@@ -175,7 +185,8 @@ class _MainBodyState extends State<MainBody> {
                                   },
                                   child: isSelected
                                       ? const Icon(Icons.check_box)
-                                      : const Icon(Icons.check_box_outline_blank),
+                                      : const Icon(
+                                          Icons.check_box_outline_blank),
                                 )
                               : const SizedBox(
                                   height: 0.0,
@@ -187,7 +198,8 @@ class _MainBodyState extends State<MainBody> {
                     onTap: widget.dropDown.enableMultipleSelection
                         ? null
                         : () {
-                            widget.dropDown.selectedItems?.call([mainList[index]]);
+                            widget.dropDown.selectedItems
+                                ?.call([mainList[index]]);
                             _onUnFocusKeyboardAndPop();
                           },
                   );
@@ -203,7 +215,8 @@ class _MainBodyState extends State<MainBody> {
   /// This helps when search enabled & show the filtered data in list.
   _buildSearchList(String userSearchTerm) {
     final results = widget.dropDown.data
-        .where((element) => element.name.toLowerCase().contains(userSearchTerm.toLowerCase()))
+        .where((element) =>
+            element.name.toLowerCase().contains(userSearchTerm.toLowerCase()))
         .toList();
     if (userSearchTerm.isEmpty) {
       mainList = widget.dropDown.data;
@@ -220,7 +233,8 @@ class _MainBodyState extends State<MainBody> {
   }
 
   void _setSearchWidgetListener() {
-    TextFormField? _searchField = (widget.dropDown.searchWidget as TextFormField?);
+    TextFormField? _searchField =
+        (widget.dropDown.searchWidget as TextFormField?);
     _searchField?.controller?.addListener(() {
       _buildSearchList(_searchField.controller?.text ?? '');
     });
