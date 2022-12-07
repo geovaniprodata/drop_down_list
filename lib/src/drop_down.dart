@@ -154,6 +154,7 @@ class _MainBodyState extends State<MainBody> {
               visible: widget.dropDown.isSearchVisible,
               child: widget.dropDown.searchWidget ??
                   AppTextField(
+                    searchText: widget.dropDown.searchText,
                     dropDown: widget.dropDown,
                     onTextChanged: _buildSearchList,
                   ),
