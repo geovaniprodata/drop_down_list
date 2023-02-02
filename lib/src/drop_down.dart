@@ -97,6 +97,7 @@ class _MainBodyState extends State<MainBody> {
   /// This list will set when the list of data is not available.
   List<SelectedListItem> mainList = [];
   List<String> strList = [];
+  final abc = 'abcdefghijklmnopqrstuvwxyz';
 
   @override
   void initState() {
@@ -175,6 +176,16 @@ class _MainBodyState extends State<MainBody> {
             Expanded(
               child: AlphabetListScrollView(
                 strList: strList,
+                headerWidgetList: [
+                  AlphabetScrollListHeader(
+                      widgetList: List.generate(abc.length, (index) {
+                        return Text(abc[index]);
+                      }),
+                      icon: Icon(Icons.abc),
+                      indexedHeaderHeight: (i) {
+                        return 80;
+                      }),
+                ],
                 indexedHeight: (i) {
                   return 120;
                 },
