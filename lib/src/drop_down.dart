@@ -175,8 +175,10 @@ class _MainBodyState extends State<MainBody> {
             Expanded(
               child: AlphabetListScrollView(
                 strList: strList,
-                indexedHeight: (i) => 80,
-                keyboardUsage: true,
+                indexedHeight: (i) {
+                  return 120;
+                },
+                keyboardUsage: false,
                 itemBuilder: (context, index) {
                   bool isSelected = mainList[index].isSelected ?? false;
                   return InkWell(
