@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  alphabet_list_scroll_view: ^2.0.0
   flutter:
     sdk: flutter
 

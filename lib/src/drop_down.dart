@@ -1,3 +1,4 @@
+import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:flutter/material.dart';
 
 import '../model/selected_list_item.dart';
@@ -37,6 +38,10 @@ class DropDown {
   /// This will set the background color to the dropdown.
   final Color dropDownBackgroundColor;
 
+  final bool? pagination;
+
+  final int? limitPerPage;
+
   DropDown({
     Key? key,
     required this.data,
@@ -49,6 +54,8 @@ class DropDown {
     this.isSearchVisible = true,
     this.dropDownBackgroundColor = Colors.transparent,
     this.searchText,
+    this.pagination,
+    this.limitPerPage,
   });
 }
 
@@ -89,11 +96,15 @@ class MainBody extends StatefulWidget {
 class _MainBodyState extends State<MainBody> {
   /// This list will set when the list of data is not available.
   List<SelectedListItem> mainList = [];
+  List<String> strList = [];
 
   @override
   void initState() {
     super.initState();
     mainList = widget.dropDown.data;
+    for (var element in mainList) {
+      strList.add(element.name);
+    }
     _setSearchWidgetListener();
   }
 
@@ -162,9 +173,10 @@ class _MainBodyState extends State<MainBody> {
 
             /// Listview (list of data with check box for multiple selection & on tile tap single selection)
             Expanded(
-              child: ListView.builder(
-                controller: scrollController,
-                itemCount: mainList.length,
+              child: AlphabetListScrollView(
+                strList: strList,
+                indexedHeight: (i) => 80,
+                keyboardUsage: true,
                 itemBuilder: (context, index) {
                   bool isSelected = mainList[index].isSelected ?? false;
                   return InkWell(
@@ -206,6 +218,50 @@ class _MainBodyState extends State<MainBody> {
                   );
                 },
               ),
+              // ListView.builder(
+              //   controller: scrollController,
+              //   itemCount: mainList.length,
+              //   itemBuilder: (context, index) {
+              //     bool isSelected = mainList[index].isSelected ?? false;
+              //     return InkWell(
+              //       child: Container(
+              //         color: widget.dropDown.dropDownBackgroundColor,
+              //         child: Padding(
+              //           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              //           child: ListTile(
+              //             title: widget.dropDown.listBuilder?.call(index) ??
+              //                 Text(
+              //                   mainList[index].name,
+              //                 ),
+              //             trailing: widget.dropDown.enableMultipleSelection
+              //                 ? GestureDetector(
+              //                     onTap: () {
+              //                       setState(() {
+              //                         mainList[index].isSelected = !isSelected;
+              //                       });
+              //                     },
+              //                     child: isSelected
+              //                         ? const Icon(Icons.check_box)
+              //                         : const Icon(
+              //                             Icons.check_box_outline_blank),
+              //                   )
+              //                 : const SizedBox(
+              //                     height: 0.0,
+              //                     width: 0.0,
+              //                   ),
+              //           ),
+              //         ),
+              //       ),
+              //       onTap: widget.dropDown.enableMultipleSelection
+              //           ? null
+              //           : () {
+              //               widget.dropDown.selectedItems
+              //                   ?.call([mainList[index]]);
+              //               _onUnFocusKeyboardAndPop();
+              //             },
+              //     );
+              //   },
+              // ),
             ),
           ],
         );
