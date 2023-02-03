@@ -174,22 +174,68 @@ class _MainBodyState extends State<MainBody> {
 
             /// Listview (list of data with check box for multiple selection & on tile tap single selection)
             Expanded(
-              child: AlphabetListScrollView(
-                strList: strList,
-                headerWidgetList: [
-                  AlphabetScrollListHeader(
-                      widgetList: List.generate(abc.length, (index) {
-                        return Text(abc[index]);
-                      }),
-                      icon: Icon(Icons.abc),
-                      indexedHeaderHeight: (i) {
-                        return 80;
-                      }),
-                ],
-                indexedHeight: (i) {
-                  return 120;
-                },
-                keyboardUsage: false,
+              child:
+                  // child: AlphabetListScrollView(
+                  //   strList: strList,
+                  //   headerWidgetList: [
+                  //     List.generate(abc.le, (index) => null)
+                  //     AlphabetScrollListHeader(
+                  //         widgetList: List.generate(abc.length, (index) {
+                  //           return Text(abc[index]);
+                  //         }),
+                  //         icon: Icon(Icons.abc),
+                  //         indexedHeaderHeight: (i) {
+                  //           return 80;
+                  //         }),
+                  //   ],
+                  //   indexedHeight: (i) {
+                  //     return 120;
+                  //   },
+                  //   keyboardUsage: false,
+                  //   itemBuilder: (context, index) {
+                  //     bool isSelected = mainList[index].isSelected ?? false;
+                  //     return InkWell(
+                  //       child: Container(
+                  //         color: widget.dropDown.dropDownBackgroundColor,
+                  //         child: Padding(
+                  //           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  //           child: ListTile(
+                  //             title: widget.dropDown.listBuilder?.call(index) ??
+                  //                 Text(
+                  //                   mainList[index].name,
+                  //                 ),
+                  //             trailing: widget.dropDown.enableMultipleSelection
+                  //                 ? GestureDetector(
+                  //                     onTap: () {
+                  //                       setState(() {
+                  //                         mainList[index].isSelected = !isSelected;
+                  //                       });
+                  //                     },
+                  //                     child: isSelected
+                  //                         ? const Icon(Icons.check_box)
+                  //                         : const Icon(
+                  //                             Icons.check_box_outline_blank),
+                  //                   )
+                  //                 : const SizedBox(
+                  //                     height: 0.0,
+                  //                     width: 0.0,
+                  //                   ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       onTap: widget.dropDown.enableMultipleSelection
+                  //           ? null
+                  //           : () {
+                  //               widget.dropDown.selectedItems
+                  //                   ?.call([mainList[index]]);
+                  //               _onUnFocusKeyboardAndPop();
+                  //             },
+                  //     );
+                  //   },
+                  // ),
+                  ListView.builder(
+                controller: scrollController,
+                itemCount: mainList.length,
                 itemBuilder: (context, index) {
                   bool isSelected = mainList[index].isSelected ?? false;
                   return InkWell(
@@ -231,50 +277,6 @@ class _MainBodyState extends State<MainBody> {
                   );
                 },
               ),
-              // ListView.builder(
-              //   controller: scrollController,
-              //   itemCount: mainList.length,
-              //   itemBuilder: (context, index) {
-              //     bool isSelected = mainList[index].isSelected ?? false;
-              //     return InkWell(
-              //       child: Container(
-              //         color: widget.dropDown.dropDownBackgroundColor,
-              //         child: Padding(
-              //           padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-              //           child: ListTile(
-              //             title: widget.dropDown.listBuilder?.call(index) ??
-              //                 Text(
-              //                   mainList[index].name,
-              //                 ),
-              //             trailing: widget.dropDown.enableMultipleSelection
-              //                 ? GestureDetector(
-              //                     onTap: () {
-              //                       setState(() {
-              //                         mainList[index].isSelected = !isSelected;
-              //                       });
-              //                     },
-              //                     child: isSelected
-              //                         ? const Icon(Icons.check_box)
-              //                         : const Icon(
-              //                             Icons.check_box_outline_blank),
-              //                   )
-              //                 : const SizedBox(
-              //                     height: 0.0,
-              //                     width: 0.0,
-              //                   ),
-              //           ),
-              //         ),
-              //       ),
-              //       onTap: widget.dropDown.enableMultipleSelection
-              //           ? null
-              //           : () {
-              //               widget.dropDown.selectedItems
-              //                   ?.call([mainList[index]]);
-              //               _onUnFocusKeyboardAndPop();
-              //             },
-              //     );
-              //   },
-              // ),
             ),
           ],
         );
