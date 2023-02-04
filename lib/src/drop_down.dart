@@ -136,20 +136,37 @@ class _MainBodyState extends State<MainBody> {
                   Expanded(
                     child: widget.dropDown.btnSwitchSearch
                         ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               widget.dropDown.bottomSheetTitle ?? Container(),
-                              ElevatedButton.icon(
-                                onPressed: () {
-                                  setState(() {
-                                    switched = !switched;
-                                  });
-                                },
-                                icon: switched
-                                    ? const Icon(Icons.switch_right)
-                                    : const Icon(Icons.switch_left),
-                                label: switched
-                                    ? const Text('Pesquisar pelo Nome')
-                                    : const Text('Pesquisar pelo ID'),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: ElevatedButton.icon(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Colors.green.shade400),
+                                    elevation:
+                                        const MaterialStatePropertyAll(4),
+                                    shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        side: BorderSide.none,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      switched = !switched;
+                                    });
+                                  },
+                                  icon: switched
+                                      ? const Icon(Icons.switch_right)
+                                      : const Icon(Icons.switch_left),
+                                  label: switched
+                                      ? const Text('Pesquisar pelo Nome')
+                                      : const Text('Pesquisar pelo ID'),
+                                ),
                               )
                             ],
                           )
