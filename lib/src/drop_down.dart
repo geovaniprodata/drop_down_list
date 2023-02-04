@@ -136,7 +136,7 @@ class _MainBodyState extends State<MainBody> {
                   Expanded(
                     child: widget.dropDown.btnSwitchSearch
                         ? Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               widget.dropDown.bottomSheetTitle ?? Container(),
                               Padding(
@@ -145,9 +145,9 @@ class _MainBodyState extends State<MainBody> {
                                 child: ElevatedButton.icon(
                                   style: ButtonStyle(
                                     fixedSize: MaterialStatePropertyAll(Size(
-                                        MediaQuery.of(context).size.width * 0.4,
+                                        MediaQuery.of(context).size.width * 0.8,
                                         MediaQuery.of(context).size.height *
-                                            0.064)),
+                                            0.05)),
                                     backgroundColor: MaterialStatePropertyAll(
                                         Colors.green.shade400),
                                     elevation:
