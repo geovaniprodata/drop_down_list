@@ -145,10 +145,9 @@ class _MainBodyState extends State<MainBody> {
                                 child: ElevatedButton.icon(
                                   style: ButtonStyle(
                                     fixedSize: MaterialStatePropertyAll(Size(
-                                        MediaQuery.of(context).size.width *
-                                            0.12,
+                                        MediaQuery.of(context).size.width * 0.3,
                                         MediaQuery.of(context).size.height *
-                                            0.08)),
+                                            0.064)),
                                     backgroundColor: MaterialStatePropertyAll(
                                         Colors.green.shade400),
                                     elevation:
