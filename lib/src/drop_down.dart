@@ -144,6 +144,11 @@ class _MainBodyState extends State<MainBody> {
                                     const EdgeInsets.symmetric(horizontal: 5),
                                 child: ElevatedButton.icon(
                                   style: ButtonStyle(
+                                    fixedSize: MaterialStatePropertyAll(Size(
+                                        MediaQuery.of(context).size.width *
+                                            0.08,
+                                        MediaQuery.of(context).size.height *
+                                            0.04)),
                                     backgroundColor: MaterialStatePropertyAll(
                                         Colors.green.shade400),
                                     elevation:
