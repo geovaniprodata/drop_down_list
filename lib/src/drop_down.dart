@@ -42,6 +42,8 @@ class DropDown {
 
   final int? limitPerPage;
 
+  final bool btnSwitchSearch;
+
   final Widget? subtitle;
 
   DropDown({
@@ -58,6 +60,7 @@ class DropDown {
     this.searchText,
     this.pagination,
     this.limitPerPage,
+    this.btnSwitchSearch = false,
     this.subtitle,
   });
 }
@@ -101,6 +104,7 @@ class _MainBodyState extends State<MainBody> {
   List<SelectedListItem> mainList = [];
   List<String> strList = [];
   final abc = 'abcdefghijklmnopqrstuvwxyz';
+  bool switched = false;
 
   @override
   void initState() {
@@ -251,7 +255,21 @@ class _MainBodyState extends State<MainBody> {
                               Text(
                                 mainList[index].name,
                               ),
-                          subtitle: widget.dropDown.subtitle,
+                          subtitle: widget.dropDown.btnSwitchSearch
+                              ? ElevatedButton.icon(
+                                  onPressed: () {
+                                    setState(() {
+                                      switched = true;
+                                    });
+                                  },
+                                  icon: switched
+                                      ? const Icon(Icons.switch_right)
+                                      : const Icon(Icons.switch_left),
+                                  label: switched
+                                      ? const Text('Pesquisar pelo Nome')
+                                      : const Text('Pesquisar pelo ID'),
+                                )
+                              : null,
                           trailing: widget.dropDown.enableMultipleSelection
                               ? GestureDetector(
                                   onTap: () {
@@ -290,10 +308,17 @@ class _MainBodyState extends State<MainBody> {
 
   /// This helps when search enabled & show the filtered data in list.
   _buildSearchList(String userSearchTerm) {
-    final results = widget.dropDown.data
-        .where((element) =>
-            element.name.toLowerCase().contains(userSearchTerm.toLowerCase()))
-        .toList();
+    final results = switched
+        ? widget.dropDown.data
+            .where((element) => element.value!
+                .toLowerCase()
+                .contains(userSearchTerm.toLowerCase()))
+            .toList()
+        : widget.dropDown.data
+            .where((element) => element.name
+                .toLowerCase()
+                .contains(userSearchTerm.toLowerCase()))
+            .toList();
     if (userSearchTerm.isEmpty) {
       mainList = widget.dropDown.data;
     } else {
