@@ -160,12 +160,21 @@ class _MainBodyState extends State<MainBody> {
                                       switched = !switched;
                                     });
                                   },
-                                  icon: switched
-                                      ? const Icon(Icons.switch_right)
-                                      : const Icon(Icons.switch_left),
-                                  label: switched
-                                      ? const Text('Pesquisar pelo Nome')
-                                      : const Text('Pesquisar pelo ID'),
+                                  icon: Icon(
+                                    switched
+                                        ? Icons.switch_right
+                                        : Icons.switch_left,
+                                    color: Colors.white,
+                                  ),
+                                  label: Text(
+                                    switched
+                                        ? 'Pesquisar pelo Nome'
+                                        : 'Pesquisar pelo ID',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                    ),
+                                  ),
                                 ),
                               )
                             ],
