@@ -134,7 +134,27 @@ class _MainBodyState extends State<MainBody> {
                 children: [
                   /// Bottom sheet title text
                   Expanded(
-                      child: widget.dropDown.bottomSheetTitle ?? Container()),
+                    child: widget.dropDown.btnSwitchSearch
+                        ? Row(
+                            children: [
+                              widget.dropDown.bottomSheetTitle ?? Container(),
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  setState(() {
+                                    switched = !switched;
+                                  });
+                                },
+                                icon: switched
+                                    ? const Icon(Icons.switch_right)
+                                    : const Icon(Icons.switch_left),
+                                label: switched
+                                    ? const Text('Pesquisar pelo Nome')
+                                    : const Text('Pesquisar pelo ID'),
+                              )
+                            ],
+                          )
+                        : widget.dropDown.bottomSheetTitle ?? Container(),
+                  ),
 
                   /// Done button
                   Visibility(
@@ -255,21 +275,6 @@ class _MainBodyState extends State<MainBody> {
                               Text(
                                 mainList[index].name,
                               ),
-                          subtitle: widget.dropDown.btnSwitchSearch
-                              ? ElevatedButton.icon(
-                                  onPressed: () {
-                                    setState(() {
-                                      switched = true;
-                                    });
-                                  },
-                                  icon: switched
-                                      ? const Icon(Icons.switch_right)
-                                      : const Icon(Icons.switch_left),
-                                  label: switched
-                                      ? const Text('Pesquisar pelo Nome')
-                                      : const Text('Pesquisar pelo ID'),
-                                )
-                              : null,
                           trailing: widget.dropDown.enableMultipleSelection
                               ? GestureDetector(
                                   onTap: () {
