@@ -135,7 +135,7 @@ class _MainBodyState extends State<MainBody> {
                   /// Bottom sheet title text
                   Expanded(
                     child: widget.dropDown.btnSwitchSearch
-                        ? Row(
+                        ? Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               widget.dropDown.bottomSheetTitle ?? Container(),
