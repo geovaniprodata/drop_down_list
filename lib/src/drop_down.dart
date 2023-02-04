@@ -172,7 +172,7 @@ class _MainBodyState extends State<MainBody> {
                                         : 'Pesquisar pelo ID',
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
