@@ -146,9 +146,9 @@ class _MainBodyState extends State<MainBody> {
                                   style: ButtonStyle(
                                     fixedSize: MaterialStatePropertyAll(Size(
                                         MediaQuery.of(context).size.width *
-                                            0.08,
+                                            0.12,
                                         MediaQuery.of(context).size.height *
-                                            0.04)),
+                                            0.08)),
                                     backgroundColor: MaterialStatePropertyAll(
                                         Colors.green.shade400),
                                     elevation:
