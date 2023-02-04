@@ -42,6 +42,8 @@ class DropDown {
 
   final int? limitPerPage;
 
+  final Widget? subtitle;
+
   DropDown({
     Key? key,
     required this.data,
@@ -56,6 +58,7 @@ class DropDown {
     this.searchText,
     this.pagination,
     this.limitPerPage,
+    this.subtitle,
   });
 }
 
@@ -248,6 +251,7 @@ class _MainBodyState extends State<MainBody> {
                               Text(
                                 mainList[index].name,
                               ),
+                          subtitle: widget.dropDown.subtitle,
                           trailing: widget.dropDown.enableMultipleSelection
                               ? GestureDetector(
                                   onTap: () {
