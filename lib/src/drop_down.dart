@@ -42,6 +42,8 @@ class DropDown {
 
   final int? limitPerPage;
 
+  final bool btnSwitch;
+
   final List<Widget>? widgetList;
 
   final Widget? subtitle;
@@ -61,6 +63,7 @@ class DropDown {
     this.pagination,
     this.limitPerPage,
     this.widgetList,
+    this.btnSwitch = false,
     this.subtitle,
   });
 }
@@ -134,13 +137,56 @@ class _MainBodyState extends State<MainBody> {
                 children: [
                   /// Bottom sheet title text
                   Expanded(
-                    child: widget.dropDown.widgetList!.isNotEmpty
+                    child: widget.dropDown.btnSwitch
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               widget.dropDown.bottomSheetTitle ?? Container(),
-                              for (var element in widget.dropDown.widgetList!)
-                                element
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: ElevatedButton.icon(
+                                  style: ButtonStyle(
+                                    fixedSize: MaterialStatePropertyAll(Size(
+                                        MediaQuery.of(context).size.width * 0.8,
+                                        MediaQuery.of(context).size.height *
+                                            0.05)),
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Colors.green.shade400),
+                                    elevation:
+                                        const MaterialStatePropertyAll(4),
+                                    shape: MaterialStatePropertyAll(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                        side: BorderSide.none,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      switched = !switched;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    switched
+                                        ? Icons.switch_right
+                                        : Icons.switch_left,
+                                    color: Colors.white,
+                                  ),
+                                  label: Text(
+                                    switched
+                                        ? 'Pesquisar pelo Nome'
+                                        : 'Pesquisar pelo ID',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              if (widget.dropDown.widgetList!.isNotEmpty)
+                                for (var element in widget.dropDown.widgetList!)
+                                  element
                             ],
                           )
                         : widget.dropDown.bottomSheetTitle ?? Container(),
