@@ -1,4 +1,3 @@
-import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:drop_down_list/src/late.dart';
 import 'package:flutter/material.dart';
 
@@ -391,6 +390,38 @@ class _MainBodyState extends State<MainBody> {
                           },
                   );
                 },
+              ),
+            ),
+            Visibility(
+              visible: selected.isInitialized,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('SELECIONADO : ${selected.val.name}'),
+                  ElevatedButton.icon(
+                    icon: const Icon(
+                      Icons.restart_alt_rounded,
+                      color: Colors.white,
+                    ),
+                    label: const Text(
+                      'LIMPAR',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll(Colors.grey.shade400),
+                      elevation: const MaterialStatePropertyAll(2),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: BorderSide.none),
+                      ),
+                    ),
+                    onPressed: () {
+                      selected = Late();
+                    },
+                  ),
+                ],
               ),
             ),
           ],
