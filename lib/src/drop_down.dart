@@ -243,7 +243,8 @@ class _MainBodyState extends State<MainBody> {
                   Visibility(
                     visible: widget.dropDown.confirmarBtn &&
                         selected.isInitialized &&
-                        widget.dropDown.listaRetorno != null,
+                        (widget.dropDown.listaRetorno != null &&
+                            widget.dropDown.listaRetorno!.isNotEmpty),
                     child: Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
