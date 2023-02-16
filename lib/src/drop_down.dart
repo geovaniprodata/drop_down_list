@@ -193,7 +193,20 @@ class _MainBodyState extends State<MainBody> {
                                   element
                             ],
                           )
-                        : widget.dropDown.bottomSheetTitle ?? Container(),
+                        : widget.dropDown.confirmarBtn
+                            ? Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  widget.dropDown.bottomSheetTitle ??
+                                      Container(),
+                                  if (widget.dropDown.widgetList!.isNotEmpty)
+                                    for (var element
+                                        in widget.dropDown.widgetList!)
+                                      element
+                                ],
+                              )
+                            : widget.dropDown.bottomSheetTitle ?? Container(),
                   ),
 
                   /// Done button
