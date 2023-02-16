@@ -1,4 +1,5 @@
 import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
+import 'package:drop_down_list/src/late.dart';
 import 'package:flutter/material.dart';
 
 import '../model/selected_list_item.dart';
@@ -111,7 +112,7 @@ class _MainBodyState extends State<MainBody> {
   List<String> strList = [];
   final abc = 'abcdefghijklmnopqrstuvwxyz';
   bool switched = false;
-  late SelectedListItem selected;
+  Late<SelectedListItem> selected = Late();
 
   @override
   void initState() {
@@ -225,7 +226,8 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
                   Visibility(
-                    visible: widget.dropDown.confirmarBtn,
+                    visible:
+                        widget.dropDown.confirmarBtn && selected.isInitialized,
                     child: Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -246,7 +248,7 @@ class _MainBodyState extends State<MainBody> {
                                 ),
                                 onPressed: () {
                                   List<SelectedListItem> selectedList = [];
-                                  selectedList.add(selected);
+                                  selectedList.add(selected.val);
 
                                   widget.dropDown.selectedItems
                                       ?.call(selectedList);
@@ -383,7 +385,7 @@ class _MainBodyState extends State<MainBody> {
                               _onUnFocusKeyboardAndPop();
                             } else {
                               setState(() {
-                                selected = mainList[index];
+                                selected.val = mainList[index];
                               });
                             }
                           },
