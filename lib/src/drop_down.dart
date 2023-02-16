@@ -48,6 +48,8 @@ class DropDown {
 
   final Widget? subtitle;
 
+  final bool confirmarBtn;
+
   DropDown({
     Key? key,
     required this.data,
@@ -65,6 +67,7 @@ class DropDown {
     this.widgetList,
     this.btnSwitch = false,
     this.subtitle,
+    this.confirmarBtn = false,
   });
 }
 
@@ -108,6 +111,7 @@ class _MainBodyState extends State<MainBody> {
   List<String> strList = [];
   final abc = 'abcdefghijklmnopqrstuvwxyz';
   bool switched = false;
+  late SelectedListItem selected;
 
   @override
   void initState() {
@@ -216,6 +220,25 @@ class _MainBodyState extends State<MainBody> {
                           },
                           child: widget.dropDown.submitButtonChild ??
                               const Text('Done'),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: widget.dropDown.confirmarBtn,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Material(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            List<SelectedListItem> selectedList = [];
+                            selectedList.add(selected);
+
+                            widget.dropDown.selectedItems?.call(selectedList);
+                            _onUnFocusKeyboardAndPop();
+                          },
+                          child: widget.dropDown.submitButtonChild ??
+                              const Text('Confirmar'),
                         ),
                       ),
                     ),
@@ -333,9 +356,15 @@ class _MainBodyState extends State<MainBody> {
                     onTap: widget.dropDown.enableMultipleSelection
                         ? null
                         : () {
-                            widget.dropDown.selectedItems
-                                ?.call([mainList[index]]);
-                            _onUnFocusKeyboardAndPop();
+                            if (!widget.dropDown.confirmarBtn) {
+                              widget.dropDown.selectedItems
+                                  ?.call([mainList[index]]);
+                              _onUnFocusKeyboardAndPop();
+                            } else {
+                              setState(() {
+                                selected = mainList[index];
+                              });
+                            }
                           },
                   );
                 },
