@@ -226,20 +226,28 @@ class _MainBodyState extends State<MainBody> {
                   ),
                   Visibility(
                     visible: widget.dropDown.confirmarBtn,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Material(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            List<SelectedListItem> selectedList = [];
-                            selectedList.add(selected);
+                    child: Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Material(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  List<SelectedListItem> selectedList = [];
+                                  selectedList.add(selected);
 
-                            widget.dropDown.selectedItems?.call(selectedList);
-                            _onUnFocusKeyboardAndPop();
-                          },
-                          child: widget.dropDown.submitButtonChild ??
-                              const Text('Confirmar'),
-                        ),
+                                  widget.dropDown.selectedItems
+                                      ?.call(selectedList);
+                                  _onUnFocusKeyboardAndPop();
+                                },
+                                child: widget.dropDown.submitButtonChild ??
+                                    const Text('Confirmar'),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
