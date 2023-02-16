@@ -393,7 +393,7 @@ class _MainBodyState extends State<MainBody> {
               ),
             ),
             Visibility(
-              visible: selected.isInitialized,
+              visible: widget.dropDown.confirmarBtn && selected.isInitialized,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -418,9 +418,9 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                     onPressed: () {
-                      setState(() {
-                        selected = Late();
-                      });
+                      // setState(() {
+                      //   selected = Late();
+                      // });
                     },
                   ),
                 ],
