@@ -398,6 +398,8 @@ class _MainBodyState extends State<MainBody> {
                             } else {
                               setState(() {
                                 selected.val = mainList[index];
+                                widget.dropDown.selectedItems
+                                    ?.call([mainList[index]]);
                               });
                             }
                           },
