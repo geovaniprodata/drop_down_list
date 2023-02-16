@@ -1,4 +1,4 @@
-import 'package:drop_down_list/src/late.dart';
+import 'late.dart';
 import 'package:flutter/material.dart';
 
 import '../model/selected_list_item.dart';
