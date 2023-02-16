@@ -234,6 +234,16 @@ class _MainBodyState extends State<MainBody> {
                             alignment: Alignment.centerRight,
                             child: Material(
                               child: ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      Colors.green.shade400),
+                                  elevation: const MaterialStatePropertyAll(2),
+                                  shape: MaterialStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        side: BorderSide.none),
+                                  ),
+                                ),
                                 onPressed: () {
                                   List<SelectedListItem> selectedList = [];
                                   selectedList.add(selected);
@@ -243,7 +253,10 @@ class _MainBodyState extends State<MainBody> {
                                   _onUnFocusKeyboardAndPop();
                                 },
                                 child: widget.dropDown.submitButtonChild ??
-                                    const Text('Confirmar'),
+                                    const Text(
+                                      'Confirmar',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                               ),
                             ),
                           ),
