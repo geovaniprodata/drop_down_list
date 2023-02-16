@@ -50,25 +50,27 @@ class DropDown {
 
   final bool confirmarBtn;
 
-  DropDown({
-    Key? key,
-    required this.data,
-    this.selectedItems,
-    this.listBuilder,
-    this.enableMultipleSelection = false,
-    this.bottomSheetTitle,
-    this.submitButtonChild,
-    this.searchWidget,
-    this.isSearchVisible = true,
-    this.dropDownBackgroundColor = Colors.transparent,
-    this.searchText,
-    this.pagination,
-    this.limitPerPage,
-    this.widgetList,
-    this.btnSwitch = false,
-    this.subtitle,
-    this.confirmarBtn = false,
-  });
+  final Map<bool, String>? defaultValue;
+
+  DropDown(
+      {Key? key,
+      required this.data,
+      this.selectedItems,
+      this.listBuilder,
+      this.enableMultipleSelection = false,
+      this.bottomSheetTitle,
+      this.submitButtonChild,
+      this.searchWidget,
+      this.isSearchVisible = true,
+      this.dropDownBackgroundColor = Colors.transparent,
+      this.searchText,
+      this.pagination,
+      this.limitPerPage,
+      this.widgetList,
+      this.btnSwitch = false,
+      this.subtitle,
+      this.confirmarBtn = false,
+      this.defaultValue = const {false: ''}});
 }
 
 class DropDownState {
@@ -121,6 +123,11 @@ class _MainBodyState extends State<MainBody> {
       strList.add(element.name);
     }
     _setSearchWidgetListener();
+
+    if (widget.dropDown.defaultValue!.keys.first) {
+      selected.val = mainList.singleWhere((element) =>
+          element.value == widget.dropDown.defaultValue!.values.first);
+    }
   }
 
   @override
