@@ -50,6 +50,8 @@ class DropDown {
 
   final bool confirmarBtn;
 
+  final List? listaRetorno;
+
   DropDown({
     Key? key,
     required this.data,
@@ -68,6 +70,7 @@ class DropDown {
     this.btnSwitch = false,
     this.subtitle,
     this.confirmarBtn = false,
+    this.listaRetorno,
   });
 }
 
@@ -238,8 +241,9 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
                   Visibility(
-                    visible:
-                        widget.dropDown.confirmarBtn && selected.isInitialized,
+                    visible: widget.dropDown.confirmarBtn &&
+                        selected.isInitialized &&
+                        widget.dropDown.listaRetorno != null,
                     child: Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
