@@ -411,39 +411,44 @@ class _MainBodyState extends State<MainBody> {
               visible: widget.dropDown.confirmarBtn && selected.isInitialized,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text('SELECIONADO : '),
-                    Text(
-                        selected.isInitialized
-                            ? selected.val.name
-                            : 'Carregando..',
-                        softWrap: true),
-                    ElevatedButton.icon(
-                      icon: const Icon(
-                        Icons.restart_alt_rounded,
-                        color: Colors.white,
-                      ),
-                      label: const Text(
-                        'LIMPAR',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(Colors.grey.shade400),
-                        elevation: const MaterialStatePropertyAll(2),
-                        shape: MaterialStatePropertyAll(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              side: BorderSide.none),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                            selected.isInitialized
+                                ? selected.val.name
+                                : 'Carregando..',
+                            softWrap: true),
+                        ElevatedButton.icon(
+                          icon: const Icon(
+                            Icons.restart_alt_rounded,
+                            color: Colors.white,
+                          ),
+                          label: const Text(
+                            'LIMPAR',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.grey.shade400),
+                            elevation: const MaterialStatePropertyAll(2),
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  side: BorderSide.none),
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              selected = Late();
+                            });
+                          },
                         ),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          selected = Late();
-                        });
-                      },
+                      ],
                     ),
                   ],
                 ),
