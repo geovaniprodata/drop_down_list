@@ -254,7 +254,7 @@ class _MainBodyState extends State<MainBody> {
                                 },
                                 child: widget.dropDown.submitButtonChild ??
                                     const Text(
-                                      'Confirmar',
+                                      'CONFIRMAR',
                                       style: TextStyle(color: Colors.white),
                                     ),
                               ),
