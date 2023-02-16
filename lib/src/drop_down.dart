@@ -395,7 +395,7 @@ class _MainBodyState extends State<MainBody> {
             Visibility(
               visible: widget.dropDown.confirmarBtn && selected.isInitialized,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
