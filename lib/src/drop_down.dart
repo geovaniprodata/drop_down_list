@@ -418,7 +418,9 @@ class _MainBodyState extends State<MainBody> {
                       ),
                     ),
                     onPressed: () {
-                      selected = Late();
+                      setState(() {
+                        selected = Late();
+                      });
                     },
                   ),
                 ],
