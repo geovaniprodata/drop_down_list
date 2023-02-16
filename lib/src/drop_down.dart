@@ -392,40 +392,40 @@ class _MainBodyState extends State<MainBody> {
                 },
               ),
             ),
-            Visibility(
-              visible: widget.dropDown.confirmarBtn && selected.isInitialized,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('SELECIONADO : ${selected.val.name}'),
-                  ElevatedButton.icon(
-                    icon: const Icon(
-                      Icons.restart_alt_rounded,
-                      color: Colors.white,
-                    ),
-                    label: const Text(
-                      'LIMPAR',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.grey.shade400),
-                      elevation: const MaterialStatePropertyAll(2),
-                      shape: MaterialStatePropertyAll(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: BorderSide.none),
-                      ),
-                    ),
-                    onPressed: () {
-                      // setState(() {
-                      //   selected = Late();
-                      // });
-                    },
-                  ),
-                ],
-              ),
-            ),
+            // Visibility(
+            //   visible: widget.dropDown.confirmarBtn && selected.isInitialized,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text('SELECIONADO : ${selected.val.name}'),
+            //       ElevatedButton.icon(
+            //         icon: const Icon(
+            //           Icons.restart_alt_rounded,
+            //           color: Colors.white,
+            //         ),
+            //         label: const Text(
+            //           'LIMPAR',
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //         style: ButtonStyle(
+            //           backgroundColor:
+            //               MaterialStatePropertyAll(Colors.grey.shade400),
+            //           elevation: const MaterialStatePropertyAll(2),
+            //           shape: MaterialStatePropertyAll(
+            //             RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(8),
+            //                 side: BorderSide.none),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           // setState(() {
+            //           //   selected = Late();
+            //           // });
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         );
       },
