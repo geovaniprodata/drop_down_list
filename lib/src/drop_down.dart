@@ -392,6 +392,9 @@ class _MainBodyState extends State<MainBody> {
                 },
               ),
             ),
+            Visibility(
+                visible: widget.dropDown.confirmarBtn && selected.isInitialized,
+                child: Text('INICIALIZADO')),
             // Visibility(
             //   visible: widget.dropDown.confirmarBtn && selected.isInitialized,
             //   child: Row(
