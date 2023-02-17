@@ -213,7 +213,20 @@ class _MainBodyState extends State<MainBody> {
                                       element
                                 ],
                               )
-                            : widget.dropDown.bottomSheetTitle ?? Container(),
+                            : widget.dropDown.widgetList != null &&
+                                    widget.dropDown.widgetList!.isNotEmpty
+                                ? Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                        widget.dropDown.bottomSheetTitle ??
+                                            Container(),
+                                        for (var element
+                                            in widget.dropDown.widgetList!)
+                                          element
+                                      ])
+                                : widget.dropDown.bottomSheetTitle ??
+                                    Container(),
                   ),
 
                   /// Done button
