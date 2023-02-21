@@ -157,7 +157,7 @@ class _MainBodyState extends State<MainBody> {
 
     var placa = value.name.substring(0, posPlaca);
 
-    return '[${value.value}] ${value.name.substring(posPlaca, value.name.length)}';
+    return '[${value.value}] ${value.name.substring(posPlaca + 2, value.name.length)}';
   }
 
   @override
