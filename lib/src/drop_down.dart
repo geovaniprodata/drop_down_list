@@ -4,6 +4,17 @@ import 'package:flutter/material.dart';
 import '../model/selected_list_item.dart';
 import 'app_text_field.dart';
 
+typedef Sort = int Function(dynamic a, dynamic b);
+typedef SortF = Sort Function(String sortField);
+
+SortF alphabetic = (String sortField) => (a, b) {
+      return a[sortField].toLowerCase().compareTo(b[sortField].toLowerCase());
+    };
+
+SortF number = (String sortField) => (a, b) {
+      return a[sortField].compareTo(b[sortField]);
+    };
+
 class DropDown {
   /// This will give the list of data.
   final List<SelectedListItem> data;
@@ -119,9 +130,14 @@ class _MainBodyState extends State<MainBody> {
   void initState() {
     super.initState();
     mainList = widget.dropDown.data;
+
+    mainList
+        .sort((a, b) => a.name.toUpperCase().compareTo(b.name.toUpperCase()));
+
     for (var element in mainList) {
       strList.add(element.name);
     }
+
     _setSearchWidgetListener();
 
     if (widget.dropDown.defaultValue!.keys.first) {
