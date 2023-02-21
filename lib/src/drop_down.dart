@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import '../model/selected_list_item.dart';
 import 'app_text_field.dart';
 
-typedef Sort = int Function(dynamic a, dynamic b);
-typedef SortF = Sort Function(String sortField);
+// typedef Sort = int Function(dynamic a, dynamic b);
+// typedef SortF = Sort Function(String sortField);
 
-SortF alphabetic = (String sortField) => (a, b) {
-      return a[sortField].toLowerCase().compareTo(b[sortField].toLowerCase());
-    };
+// SortF alphabetic = (String sortField) => (a, b) {
+//       return a[sortField].toLowerCase().compareTo(b[sortField].toLowerCase());
+//     };
 
-SortF number = (String sortField) => (a, b) {
-      return a[sortField].compareTo(b[sortField]);
-    };
+// SortF number = (String sortField) => (a, b) {
+//       return a[sortField].compareTo(b[sortField]);
+//     };
 
 class DropDown {
   /// This will give the list of data.
@@ -63,25 +63,29 @@ class DropDown {
 
   final Map<bool, String>? defaultValue;
 
-  DropDown(
-      {Key? key,
-      required this.data,
-      this.selectedItems,
-      this.listBuilder,
-      this.enableMultipleSelection = false,
-      this.bottomSheetTitle,
-      this.submitButtonChild,
-      this.searchWidget,
-      this.isSearchVisible = true,
-      this.dropDownBackgroundColor = Colors.transparent,
-      this.searchText,
-      this.pagination,
-      this.limitPerPage,
-      this.widgetList,
-      this.btnSwitch = false,
-      this.subtitle,
-      this.confirmarBtn = false,
-      this.defaultValue = const {false: ''}});
+  final bool alphabetic;
+
+  DropDown({
+    Key? key,
+    required this.data,
+    this.selectedItems,
+    this.listBuilder,
+    this.enableMultipleSelection = false,
+    this.bottomSheetTitle,
+    this.submitButtonChild,
+    this.searchWidget,
+    this.isSearchVisible = true,
+    this.dropDownBackgroundColor = Colors.transparent,
+    this.searchText,
+    this.pagination,
+    this.limitPerPage,
+    this.widgetList,
+    this.btnSwitch = false,
+    this.subtitle,
+    this.confirmarBtn = false,
+    this.defaultValue = const {false: ''},
+    this.alphabetic = false,
+  });
 }
 
 class DropDownState {
@@ -131,8 +135,10 @@ class _MainBodyState extends State<MainBody> {
     super.initState();
     mainList = widget.dropDown.data;
 
-    mainList
-        .sort((a, b) => a.name.toUpperCase().compareTo(b.name.toUpperCase()));
+    if (widget.dropDown.alphabetic) {
+      mainList
+          .sort((a, b) => a.name.toUpperCase().compareTo(b.name.toUpperCase()));
+    }
 
     for (var element in mainList) {
       strList.add(element.name);
