@@ -152,6 +152,14 @@ class _MainBodyState extends State<MainBody> {
     }
   }
 
+  String getById(SelectedListItem value) {
+    var posPlaca = value.name.indexOf(']');
+
+    var placa = value.name.substring(0, posPlaca);
+
+    return '[${value.value}] ${value.name.substring(posPlaca, value.name.length)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -409,7 +417,9 @@ class _MainBodyState extends State<MainBody> {
                         child: ListTile(
                           title: widget.dropDown.listBuilder?.call(index) ??
                               Text(
-                                mainList[index].name,
+                                switched
+                                    ? getById(mainList[index])
+                                    : mainList[index].name,
                               ),
                           trailing: widget.dropDown.enableMultipleSelection
                               ? GestureDetector(
